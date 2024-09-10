@@ -1,0 +1,60 @@
+
+Simple Web Infrastructure Design
+
+
+Overview:
+In this exercise, we'll design a simple web infrastructure that uses a single server to host a website, reachable via the domain name www.foobar.com.
+
+
+User's Journey:
+- User Request: A user opens their browser and types in www.foobar.com.
+- DNS Resolution: The browser queries the DNS to resolve www.foobar.com to an IP address. The DNS server responds with the IP address 8.8.8.8, which is the IP of our server.
+- Connection to Server: The user's browser connects to the server at IP 8.8.8.8 using the HTTP or HTTPS protocol.
+- Web Server: The Nginx web server receives the request on port 80 (HTTP) or 443 (HTTPS) and forwards the request to the application server.
+- Application Server: The application server processes the request, executes the necessary code, and may interact with the database to fetch or store data.
+Database: If required, the application server queries the MySQL database for data.
+- Response: The application server generates a response (usually HTML, JSON, etc.) and sends it back to the web server, which in turn sends it back to the user's browser.
+- User Receives Content: The user's browser renders the content and displays the webpage.
+
+
+Components of the Infrastructure:
+
+Server:
+- Definition: A server is a physical or virtual machine that hosts various services and applications required to run a website. It is assigned an IP address (in this case, 8.8.8.8).
+- Role: The server in this infrastructure hosts the web server, application server, and database. It handles all requests and serves content to users.
+
+Domain Name:
+- Definition: A domain name is a human-readable address that points to the IP address of a server. For example, foobar.com.
+- Role: The domain name foobar.com makes it easy for users to access the website without remembering an IP address.
+
+DNS Record:
+- Type: The www in www.foobar.com is typically associated with a CNAME (Canonical Name) record or an A record.
+- Role: In this case, www.foobar.com is an A record that points directly to the IP address 8.8.8.8. The DNS server translates www.foobar.com to 8.8.8.8, allowing the browser to find the server.
+
+Web Server (Nginx):
+- Role: Nginx handles incoming HTTP/HTTPS requests from users and serves static content (like HTML, CSS, and JavaScript files). It also forwards dynamic content requests to the application server.
+
+Application Server:
+- Role: The application server runs the codebase (for example, PHP, Python, Ruby, etc.) that generates dynamic content. It processes the user's request, interacts with the database if needed, and generates the appropriate response.
+
+Database (MySQL):
+- Role: The MySQL database stores structured data required by the application. It is queried by the application server to retrieve or store information.
+
+Communication:
+- Protocol: The server communicates with the user's computer via the HTTP or HTTPS protocol. The browser sends an HTTP request to the server, and the server responds with the requested content.
+
+
+Issues with This Infrastructure:
+
+Single Point of Failure (SPOF):
+- If the single server fails, the entire website goes down. There is no redundancy.
+
+Downtime During Maintenance:
+- Any time you need to deploy new code or update the server, the web server or application server might need to be restarted, causing downtime.
+
+Scalability:
+- This setup cannot handle a large volume of traffic. As the number of requests increases, the server's performance may degrade, leading to slow response times or crashes.
+
+
+Conclusion:
+While this simple web infrastructure is easy to set up and manage, it has significant limitations in terms of scalability, reliability, and availability. As traffic grows, or as the need for uptime becomes critical, you would need to consider more advanced infrastructure with load balancing, multiple servers, and redundancy to avoid these issues.
