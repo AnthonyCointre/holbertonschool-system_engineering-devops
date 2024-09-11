@@ -2,35 +2,35 @@
 
 ## Specifics about the infrastructure:
 
-    - Servers:
-        - In this setup, we use three servers: two for hosting web and application services and one for the MySQL database cluster.
+- Servers:
+    - In this setup, we use three servers: two for hosting web and application services and one for the MySQL database cluster.
 
-    - Load Balancer (HAProxy):
-        - The load balancer distributes incoming traffic evenly across multiple web servers. This helps prevent any single server from becoming overloaded and ensures better availability.
+- Load Balancer (HAProxy):
+    - The load balancer distributes incoming traffic evenly across multiple web servers. This helps prevent any single server from becoming overloaded and ensures better availability.
 
-    - Distribution Algorithm:
-        - This algorithm distributes incoming requests sequentially across the available servers, ensuring that each server handles an equal share of the traffic.
+- Distribution Algorithm:
+    - This algorithm distributes incoming requests sequentially across the available servers, ensuring that each server handles an equal share of the traffic.
 
-    - Active-Active vs. Active-Passive:
-        - Active-Active: Both servers are actively handling requests simultaneously.
-        - Active-Passive: One server is active and handles requests, while the other remains on standby and takes over only if the active server fails. In our setup, the load balancer enables an Active-Active setup.
+- Active-Active vs. Active-Passive:
+    - Active-Active: Both servers are actively handling requests simultaneously.
+    - Active-Passive: One server is active and handles requests, while the other remains on standby and takes over only if the active server fails. In our setup, the load balancer enables an Active-Active setup.
 
-    - Database (MySQL Primary-Replica Cluster):
-        - Primary-Replica Cluster:
-            - Primary Node: Handles all write operations and propagates data changes to the Replica node.
-            - Replica Node: Handles read operations and replicates the data from the Primary node.
-        - The Primary node is responsible for all updates and inserts, while the Replica node offloads read operations to balance the load.
+- Database (MySQL Primary-Replica Cluster):
+    - Primary-Replica Cluster:
+        - Primary Node: Handles all write operations and propagates data changes to the Replica node.
+        - Replica Node: Handles read operations and replicates the data from the Primary node.
+    - The Primary node is responsible for all updates and inserts, while the Replica node offloads read operations to balance the load.
 
 
 ## Issues with the infrastructure:
 
-    - Single Points of Failure (SPOF):
-        - The load balancer itself can be a SPOF if not redundant. If it fails, the entire website becomes unreachable.
-        - The database Primary node can also be a SPOF since all write operations depend on it.
+- Single Points of Failure (SPOF):
+    - The load balancer itself can be a SPOF if not redundant. If it fails, the entire website becomes unreachable.
+    - The database Primary node can also be a SPOF since all write operations depend on it.
 
-    - Security Issues:
-        - Without a firewall, the infrastructure is vulnerable to unauthorized access and attacks.
-        - The lack of HTTPS means data is transmitted in plaintext, which is insecure.
+- Security Issues:
+    - Without a firewall, the infrastructure is vulnerable to unauthorized access and attacks.
+    - The lack of HTTPS means data is transmitted in plaintext, which is insecure.
 
-    - No Monitoring:
-        - Without monitoring tools, it's challenging to detect and respond to performance issues or failures promptly.
+- No Monitoring:
+    - Without monitoring tools, it's challenging to detect and respond to performance issues or failures promptly.
