@@ -2,31 +2,31 @@
 
 ## Specifics about the infrastructure:
 
-    - Firewalls:
-        - Role: Firewalls are added in front of each server to control and filter incoming and outgoing network traffic. They protect the servers from unauthorized access, DDoS attacks, and other security threats.
-        - Why: Firewalls are essential to secure the infrastructure by allowing only legitimate traffic and blocking malicious traffic.
+- Firewalls:
+    - Role: Firewalls are added in front of each server to control and filter incoming and outgoing network traffic. They protect the servers from unauthorized access, DDoS attacks, and other security threats.
+    - Why: Firewalls are essential to secure the infrastructure by allowing only legitimate traffic and blocking malicious traffic.
 
-    - SSL Certificate:
-        - Role: An SSL certificate is installed on the load balancer to enable HTTPS, which encrypts the communication between the user's browser and the server.
-        - Why: Serving traffic over HTTPS ensures that data transmitted between the user and the server is encrypted, protecting it from eavesdropping and tampering.
+- SSL Certificate:
+    - Role: An SSL certificate is installed on the load balancer to enable HTTPS, which encrypts the communication between the user's browser and the server.
+    - Why: Serving traffic over HTTPS ensures that data transmitted between the user and the server is encrypted, protecting it from eavesdropping and tampering.
 
-    - Monitoring Clients:
-        - Role: Monitoring clients are installed on each server to collect data such as CPU usage, memory usage, disk space, and network traffic. This data is sent to a monitoring service like Sumologic for analysis.
-        - Why: Monitoring is crucial for ensuring the health and performance of the infrastructure. It helps in detecting issues, identifying bottlenecks, and ensuring uptime.
-        - Monitoring tools collect data using agents installed on each server. These agents gather system metrics and logs, which are then sent to a central monitoring service for aggregation and analysis.
+- Monitoring Clients:
+    - Role: Monitoring clients are installed on each server to collect data such as CPU usage, memory usage, disk space, and network traffic. This data is sent to a monitoring service like Sumologic for analysis.
+    - Why: Monitoring is crucial for ensuring the health and performance of the infrastructure. It helps in detecting issues, identifying bottlenecks, and ensuring uptime.
+    - Monitoring tools collect data using agents installed on each server. These agents gather system metrics and logs, which are then sent to a central monitoring service for aggregation and analysis.
 
-    - Monitoring Web Server QPS (Queries Per Second):
-        - To monitor the QPS of the web server, you would configure the monitoring tool to track the number of requests handled by the Nginx web server per second. This metric helps in understanding the load on the web server and identifying any performance issues.
+- Monitoring Web Server QPS (Queries Per Second):
+    - To monitor the QPS of the web server, you would configure the monitoring tool to track the number of requests handled by the Nginx web server per second. This metric helps in understanding the load on the web server and identifying any performance issues.
 
 
 ## Issues with the infrastructure:
 
-    - Terminating SSL at the Load Balancer:
-        - When SSL is terminated at the load balancer, the traffic between the load balancer and the web servers is not encrypted. This can expose internal traffic to potential threats if the -
+- Terminating SSL at the Load Balancer:
+    - When SSL is terminated at the load balancer, the traffic between the load balancer and the web servers is not encrypted. This can expose internal traffic to potential threats if the -
         network is compromised.
 
-    - Single MySQL Server for Writes:
-        - Having only one MySQL server that accepts write operations creates a single point of failure. If the Primary node fails, the system cannot process any write operations until a new Primary is promoted.
+- Single MySQL Server for Writes:
+    - Having only one MySQL server that accepts write operations creates a single point of failure. If the Primary node fails, the system cannot process any write operations until a new Primary is promoted.
 
-    - Servers with All Components:
-        - If each server has all components (web server, application server, database), it can lead to resource contention. Each service competes for CPU, memory, and disk I/O, which can degrade performance. Additionally, it complicates scaling and maintenance.
+- Servers with All Components:
+    - If each server has all components (web server, application server, database), it can lead to resource contention. Each service competes for CPU, memory, and disk I/O, which can degrade performance. Additionally, it complicates scaling and maintenance.
