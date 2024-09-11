@@ -1,6 +1,6 @@
-Secured and monitored web infrastructure
+# Secured and monitored web infrastructure
 
-- Components of the infrastructure:
+## Specifics about the infrastructure:
 
     - Firewalls:
         - Role: Firewalls are added in front of each server to control and filter incoming and outgoing network traffic. They protect the servers from unauthorized access, DDoS attacks, and other security threats.
@@ -19,7 +19,7 @@ Secured and monitored web infrastructure
         - To monitor the QPS of the web server, you would configure the monitoring tool to track the number of requests handled by the Nginx web server per second. This metric helps in understanding the load on the web server and identifying any performance issues.
 
 
-- Issues with the infrastructure:
+## Issues with the infrastructure:
 
     - Terminating SSL at the Load Balancer:
         - When SSL is terminated at the load balancer, the traffic between the load balancer and the web servers is not encrypted. This can expose internal traffic to potential threats if the -
