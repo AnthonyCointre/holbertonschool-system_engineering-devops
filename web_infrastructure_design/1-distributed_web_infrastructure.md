@@ -1,6 +1,6 @@
-Distributed web infrastructure
+# Distributed web infrastructure
 
-- Components of the infrastructure:
+## Specifics about the infrastructure:
 
     - Servers:
         - In this setup, we use three servers: two for hosting web and application services and one for the MySQL database cluster.
@@ -22,7 +22,7 @@ Distributed web infrastructure
         - The Primary node is responsible for all updates and inserts, while the Replica node offloads read operations to balance the load.
 
 
-- Issues with the infrastructure:
+## Issues with the infrastructure:
 
     - Single Points of Failure (SPOF):
         - The load balancer itself can be a SPOF if not redundant. If it fails, the entire website becomes unreachable.
