@@ -1,6 +1,6 @@
-Scale up
+# Scale up
 
-- Components of the infrastructure:
+## Specifics about the infrastructure:
 
     - Load Balancers (HAProxy):
         - A second load balancer is added and configured as a cluster with the existing one. This cluster setup ensures high availability. If one load balancer fails, the other can take over, preventing downtime.
