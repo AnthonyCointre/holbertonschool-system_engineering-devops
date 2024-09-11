@@ -1,6 +1,6 @@
-Simple web stack
+# Simple web stack
 
-- Components of the infrastructure:
+## Specifics about the infrastructure:
 
     - Server:
         - A server is a physical or virtual machine that hosts various services and applications required to run a website. It is assigned an IP address (in this case, 8.8.8.8).
@@ -24,7 +24,7 @@ Simple web stack
         - The server communicates with the user's computer via the HTTP or HTTPS protocol. The browser sends an HTTP request to the server, and the server responds with the requested content.
 
 
-- Issues with the infrastructure:
+## Issues with the infrastructure:
 
     - Single Point of Failure (SPOF):
         - If the single server fails, the entire website goes down. There is no redundancy.
