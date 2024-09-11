@@ -2,35 +2,35 @@
 
 ## Specifics about the infrastructure:
 
-    - Server:
-        - A server is a physical or virtual machine that hosts various services and applications required to run a website. It is assigned an IP address (in this case, 8.8.8.8).
+- Server:
+    - A server is a physical or virtual machine that hosts various services and applications required to run a website. It is assigned an IP address (in this case, 8.8.8.8).
 
-    - Domain name:
-        - A domain name is a human-readable address that points to the IP address of a server. For example, foobar.com.
+- Domain name:
+    - A domain name is a human-readable address that points to the IP address of a server. For example, foobar.com.
 
-    - DNS record:
-        - The www in www.foobar.com is a subdomain.
+- DNS record:
+    - The www in www.foobar.com is a subdomain.
 
-    - Web server (Nginx):
-        - Nginx handles incoming HTTP/HTTPS requests from users and serves static content (like HTML, CSS, and JavaScript files). It also forwards dynamic content requests to the application server.
+- Web server (Nginx):
+    - Nginx handles incoming HTTP/HTTPS requests from users and serves static content (like HTML, CSS, and JavaScript files). It also forwards dynamic content requests to the application server.
 
-    - Application server:
-        - The application server runs the codebase (for example, PHP, Python, Ruby, etc.) that generates dynamic content. It processes the user's request, interacts with the database if needed, and generates the appropriate response.
+- Application server:
+    - The application server runs the codebase (for example, PHP, Python, Ruby, etc.) that generates dynamic content. It processes the user's request, interacts with the database if needed, and generates the appropriate response.
 
-    - Database (MySQL):
-        - The MySQL database stores structured data required by the application. It is queried by the application server to retrieve or store information.
+- Database (MySQL):
+    - The MySQL database stores structured data required by the application. It is queried by the application server to retrieve or store information.
 
-    - Communication:
-        - The server communicates with the user's computer via the HTTP or HTTPS protocol. The browser sends an HTTP request to the server, and the server responds with the requested content.
+- Communication:
+    - The server communicates with the user's computer via the HTTP or HTTPS protocol. The browser sends an HTTP request to the server, and the server responds with the requested content.
 
 
 ## Issues with the infrastructure:
 
-    - Single Point of Failure (SPOF):
-        - If the single server fails, the entire website goes down. There is no redundancy.
+- Single Point of Failure (SPOF):
+    - If the single server fails, the entire website goes down. There is no redundancy.
 
-    - Downtime During Maintenance:
-        - Any time you need to deploy new code or update the server, the web server or application server might need to be restarted, causing downtime.
+- Downtime During Maintenance:
+    - Any time you need to deploy new code or update the server, the web server or application server might need to be restarted, causing downtime.
 
-    - Scalability:
-        - This setup cannot handle a large volume of traffic. As the number of requests increases, the server's performance may degrade, leading to slow response times or crashes.
+- Scalability:
+    - This setup cannot handle a large volume of traffic. As the number of requests increases, the server's performance may degrade, leading to slow response times or crashes.
