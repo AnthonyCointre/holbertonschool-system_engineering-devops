@@ -1,36 +1,43 @@
 # Distributed web infrastructure
 
+## Diagram :
+![Diagram](https://github.com/AnthonyCointre/holbertonschool-system_engineering-devops/blob/main/web_infrastructure_design/1-distributed_web_infrastructure.jpg)
+
+
 ## Specifics about the infrastructure:
 
-- Servers:
-    - In this setup, we use three servers: two for hosting web and application services and one for the MySQL database cluster.
+- For every additional element, why you are adding it:
+    - 2 Servers to provides redundancy and failover capability.
+    - 1 Web Serverto manages web traffic and serves static content efficiently.
+    - 1 Application Server to handles dynamic content and business logic.
+    - 1 Load-Balancer to distributes traffic to prevent any single server from becoming a bottleneck.
+    - 1 Application Files to needed for the application to function.
+    - 1 Database to stores data required by the application.
 
-- Load Balancer (HAProxy):
-    - The load balancer distributes incoming traffic evenly across multiple web servers. This helps prevent any single server from becoming overloaded and ensures better availability.
+- What distribution algorithm your load balancer is configured with and how it works:
+    - Common algorithms include round-robin, least connections, and IP hash.
 
-- Distribution Algorithm:
-    - This algorithm distributes incoming requests sequentially across the available servers, ensuring that each server handles an equal share of the traffic.
+- Is your load-balancer enabling an Active-Active or Active-Passive setup, explain the difference between both:
+    - Active-Active: All servers handle traffic simultaneously, balancing the load and providing redundancy.
+    - Active-Passive: Only one server handles traffic while the other remains idle, taking over only if the active server fails.
 
-- Active-Active vs. Active-Passive:
-    - Active-Active: Both servers are actively handling requests simultaneously.
-    - Active-Passive: One server is active and handles requests, while the other remains on standby and takes over only if the active server fails. In our setup, the load balancer enables an Active-Active setup.
+- How a database Primary-Replica (Master-Slave) cluster works:
+    - The Primary (Master) node handles write operations and data changes.
+    - The Replica (Slave) nodes handle read operations and synchronize data from the Primary, providing load distribution and redundancy.
 
-- Database (MySQL Primary-Replica Cluster):
-    - Primary-Replica Cluster:
-        - Primary Node: Handles all write operations and propagates data changes to the Replica node.
-        - Replica Node: Handles read operations and replicates the data from the Primary node.
-    - The Primary node is responsible for all updates and inserts, while the Replica node offloads read operations to balance the load.
+- What is the difference between the Primary node and the Replica node in regard to the application:
+    - The Primary node accepts writes and updates data.
+    - The Replica node only handles read queries and replicates data from the Primary node.
 
 
 ## Issues with the infrastructure:
 
-- Single Points of Failure (SPOF):
-    - The load balancer itself can be a SPOF if not redundant. If it fails, the entire website becomes unreachable.
-    - The database Primary node can also be a SPOF since all write operations depend on it.
+- Where are SPOF:
+    - The database or the load balancer could be a SPOF if they fail and are not redundant.
 
-- Security Issues:
-    - Without a firewall, the infrastructure is vulnerable to unauthorized access and attacks.
-    - The lack of HTTPS means data is transmitted in plaintext, which is insecure.
+- Security issues (no firewall, no HTTPS):
+    - No Firewall: Lacks protection against unauthorized access and attacks.
+    - No HTTPS: Data transmitted over the network is not encrypted, risking exposure of sensitive information.
 
-- No Monitoring:
-    - Without monitoring tools, it's challenging to detect and respond to performance issues or failures promptly.
+- No monitoring:
+    - Absence of monitoring means potential issues may go unnoticed, leading to undetected performance problems or outages.
