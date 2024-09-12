@@ -1,15 +1,12 @@
 # Scale up
 
+## Diagram :
+![Diagram](https://github.com/AnthonyCointre/holbertonschool-system_engineering-devops/blob/main/web_infrastructure_design/3-scale_up.jpg)
+
+
 ## Specifics about the infrastructure:
 
-- Load Balancers (HAProxy):
-    - A second load balancer is added and configured as a cluster with the existing one. This cluster setup ensures high availability. If one load balancer fails, the other can take over, preventing downtime.
-
-- Web Server (Nginx):
-    - The web server is moved to its own dedicated server to reduce resource contention and to ensure that web traffic processing does not interfere with other services.
-
-- Application Server:
-    - The application server is hosted on its own dedicated server, allowing it to handle dynamic requests more efficiently without competing for resources with the web server or database.
-
-- Database Server (MySQL):
-    - The database server is isolated on its own server to ensure that database operations are not hindered by other processes and to improve the performance and security of the data.
+- For every additional element, why you are adding it:
+    - 1 Server to provides additional resources or redundancy to support the expanded infrastructure.
+    - 1 Load-Balancer Cluster to increases reliability and distribution efficiency by having multiple load-balancers share the load and provide failover capability.
+    - 1 Split Components to separates different server roles to optimize performance and scalability, allowing each server to focus on a specific task and reducing the risk of a single component affecting the entire system.
