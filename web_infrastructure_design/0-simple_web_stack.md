@@ -1,36 +1,51 @@
 # Simple web stack
 
+## Diagram :
+![Diagram](https://github.com/AnthonyCointre/holbertonschool-system_engineering-devops/blob/main/web_infrastructure_design/0-simple_web_stack.jpg)
+
+
+## User want to access the website :
+
+- The user enters www.foobar.com in their browser, triggering a DNS request.
+- The DNS server resolves www.foobar.com to 8.8.8.8 using the A record.
+- The browser sends an HTTP request to 8.8.8.8, which reaches the server.
+- The Nginx web server on the server receives the request and forwards it to the application server.
+- The application server processes the request using the application files.
+- The application server interacts with the MySQL database to retrieve or store data.
+- The response is sent back through Nginx to the user's browser, displaying the requested webpage.
+
+
 ## Specifics about the infrastructure:
 
-- Server:
-    - A server is a physical or virtual machine that hosts various services and applications required to run a website. It is assigned an IP address (in this case, 8.8.8.8).
+- What is a server:
+    - A server is a computer that provides services or resources to other computers over a network.
 
-- Domain name:
-    - A domain name is a human-readable address that points to the IP address of a server. For example, foobar.com.
+- What is the role of the domain name:
+    - A domain name translates human-readable addresses into IP addresses for locating servers.
 
-- DNS record:
-    - The www in www.foobar.com is a subdomain.
+- What type of DNS record www is in www.foobar.com:
+    - The www in www.foobar.com is typically a CNAME record that maps to a canonical domain name.
 
-- Web server (Nginx):
-    - Nginx handles incoming HTTP/HTTPS requests from users and serves static content (like HTML, CSS, and JavaScript files). It also forwards dynamic content requests to the application server.
+- What is the role of the web server:
+    - A web server handles HTTP requests and delivers static content or routes requests to application servers.
 
-- Application server:
-    - The application server runs the codebase (for example, PHP, Python, Ruby, etc.) that generates dynamic content. It processes the user's request, interacts with the database if needed, and generates the appropriate response.
+- What is the role of the application server:
+    - An application server processes server-side logic and interacts with databases to generate dynamic content.
 
-- Database (MySQL):
-    - The MySQL database stores structured data required by the application. It is queried by the application server to retrieve or store information.
+- What is the role of the database:
+    - A database stores and manages data used by the application and accessed via the application server.
 
-- Communication:
-    - The server communicates with the user's computer via the HTTP or HTTPS protocol. The browser sends an HTTP request to the server, and the server responds with the requested content.
+- What is the server using to communicate with the computer of the user requesting the website:
+    - The server communicates with the user's computer using the HTTP or HTTPS protocol.
 
 
 ## Issues with the infrastructure:
 
-- Single Point of Failure (SPOF):
-    - If the single server fails, the entire website goes down. There is no redundancy.
+- SPOF:
+    - SPOF (Single Point of Failure) is a component whose failure can cause the entire system to become unavailable.
 
-- Downtime During Maintenance:
-    - Any time you need to deploy new code or update the server, the web server or application server might need to be restarted, causing downtime.
+- Downtime when maintenance needed (like deploying new code web server needs to be restarted):
+    - Downtime during maintenance occurs when restarting a web server is necessary, leading to temporary unavailability.
 
-- Scalability:
-    - This setup cannot handle a large volume of traffic. As the number of requests increases, the server's performance may degrade, leading to slow response times or crashes.
+- Cannot scale if too much incoming traffic:
+    - Inability to scale means the system cannot handle increased traffic effectively, causing potential slowdowns or outages.
