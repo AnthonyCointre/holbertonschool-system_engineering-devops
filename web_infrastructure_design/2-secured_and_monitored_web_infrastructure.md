@@ -1,32 +1,39 @@
 # Secured and monitored web infrastructure
 
+## Diagram :
+![Diagram](https://github.com/AnthonyCointre/holbertonschool-system_engineering-devops/blob/main/web_infrastructure_design/2-secured_and_monitored_web_infrastructure.jpg)
+
+
 ## Specifics about the infrastructure:
 
-- Firewalls:
-    - Role: Firewalls are added in front of each server to control and filter incoming and outgoing network traffic. They protect the servers from unauthorized access, DDoS attacks, and other security threats.
-    - Why: Firewalls are essential to secure the infrastructure by allowing only legitimate traffic and blocking malicious traffic.
+- For every additional element, why you are adding it:
+    - 3 Firewalls to provide layered security by blocking unauthorized access and preventing potential attacks.
+    - 1 SSL Certificate to secures data in transit, protects user privacy, and ensures the authenticity of the website.
+    - 3 Monitoring Clients to track system performance, detect anomalies, and ensure the infrastructure is operating correctly.
 
-- SSL Certificate:
-    - Role: An SSL certificate is installed on the load balancer to enable HTTPS, which encrypts the communication between the user's browser and the server.
-    - Why: Serving traffic over HTTPS ensures that data transmitted between the user and the server is encrypted, protecting it from eavesdropping and tampering.
+- What are firewalls for:
+    - Firewalls control and monitor network traffic, enforcing security policies to protect against unauthorized access and cyber threats.
 
-- Monitoring Clients:
-    - Role: Monitoring clients are installed on each server to collect data such as CPU usage, memory usage, disk space, and network traffic. This data is sent to a monitoring service like Sumologic for analysis.
-    - Why: Monitoring is crucial for ensuring the health and performance of the infrastructure. It helps in detecting issues, identifying bottlenecks, and ensuring uptime.
-    - Monitoring tools collect data using agents installed on each server. These agents gather system metrics and logs, which are then sent to a central monitoring service for aggregation and analysis.
+- Why is the traffic served over HTTPS:
+    - HTTPS encrypts data transmitted between users and the server, protecting sensitive information and ensuring data integrity and privacy.
 
-- Monitoring Web Server QPS (Queries Per Second):
-    - To monitor the QPS of the web server, you would configure the monitoring tool to track the number of requests handled by the Nginx web server per second. This metric helps in understanding the load on the web server and identifying any performance issues.
+- What monitoring is used for:
+    - Monitoring provides insights into system performance, helps detect issues early, and aids in troubleshooting and optimizing the infrastructure.
+
+- How the monitoring tool is collecting data:
+    - Monitoring tools collect data through agents or APIs installed on servers, which gather metrics like CPU usage, memory, and network traffic, and send them to a central monitoring system.
+
+- Explain what to do if you want to monitor your web server QPS:
+    - To monitor Queries Per Second (QPS) on your web server, configure the monitoring tool to track and report on the number of requests the server handles within a given time frame.
 
 
 ## Issues with the infrastructure:
 
-- Terminating SSL at the Load Balancer:
-    - When SSL is terminated at the load balancer, the traffic between the load balancer and the web servers is not encrypted. This can expose internal traffic to potential threats if the -
-        network is compromised.
+- Why terminating SSL at the load balancer level is an issue:
+    - If SSL is terminated at the load balancer, traffic between the load balancer and the web server is unencrypted, potentially exposing data to internal network threats.
 
-- Single MySQL Server for Writes:
-    - Having only one MySQL server that accepts write operations creates a single point of failure. If the Primary node fails, the system cannot process any write operations until a new Primary is promoted.
+- Why having only one MySQL server capable of accepting writes is an issue:
+    - Having only one MySQL server for write operations creates a single point of failure and limits scalability, as the server can become a bottleneck under high load.
 
-- Servers with All Components:
-    - If each server has all components (web server, application server, database), it can lead to resource contention. Each service competes for CPU, memory, and disk I/O, which can degrade performance. Additionally, it complicates scaling and maintenance.
+- Why having servers with all the same components (database, web server and application server) might be a problem:
+    - Having servers with identical database, web server, and application server can create management complexity, redundancy issues, and reduce fault tolerance, as failure in one server type impacts multiple functions.
